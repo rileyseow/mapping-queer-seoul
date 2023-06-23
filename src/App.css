@@ -1,0 +1,377 @@
+  /*******************/
+ /****** FONTS ******/
+/*******************/
+@font-face {
+  font-family: 'Edition-International';
+  src: url('./assets/Edition-International50.otf');
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family: 'Edition-International';
+  src: url('./assets/Edition-International30.otf');
+  font-weight:300;
+  font-style:normal;
+}
+
+@font-face {
+  font-family: 'Edition-International';
+  src: url('./assets/Edition-International70.otf');
+  font-weight:700;
+  font-style:normal;
+}
+
+
+  /******************/
+ /****** BODY ******/
+/******************/
+body {
+  font-family: 'Edition-International', Sans-Serif;
+  font-weight:normal;
+  cursor:default;
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  font-weight:normal;
+  line-height: 1.1;
+  margin-bottom:2%;
+}
+
+section {
+  padding:7% 7% 0% 7%;
+  margin-bottom:3%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+
+  /******************/
+ /****** Nav *******/
+/******************/
+nav {
+  padding: 20% 15% 1% 6%;
+  text-align:right;
+  margin-bottom:12%
+}
+
+.Header--downBtn {
+  position:absolute;
+  top:72%;
+  right:21%;
+  background-color:white;
+  font-size:50px;
+  border: 1px solid transparent;
+  font-family: inherit;
+  cursor: pointer;
+  animation: downwards 1.5s infinite;
+}
+
+@keyframes downwards {
+  0% {
+    padding-top: 0;
+  }
+  50% {
+    padding-top: 1.5%;
+  }
+  100% {
+    padding-top: 0;
+  }
+}
+
+.Header--tiles {
+  position:absolute;
+  display:grid;
+  grid-template-columns: repeat(3, 31%);
+  grid-template-rows: repeat(3, auto);
+  top:0%;
+  left:0%;
+  cursor:zoom-in;
+}
+
+.Header--tiles > img {
+  object-fit:cover;
+  width:100%;
+  max-height:100%;
+}
+
+.Header--archiveImgPopUp {
+  width:10%;
+  border-radius:15px;
+  animation:appear 700ms;
+  position:absolute;
+  margin-top:15px;
+  margin-left:15px;
+}
+
+@keyframes appear {
+  from {
+    transform:scale(0);
+  }
+  to {
+    transform:scale(1);
+  }
+}
+
+
+  /****************************/
+ /****** Neighborhoods *******/
+/****************************/
+.Neighborhoods--search-districts {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.Neighborhoods--img {
+  width:630px;
+  margin-right:5%;
+}
+
+.Neighborhoods--marker {
+  width:45px;
+  z-index:1;
+  position:absolute;
+}
+
+.Neighborhoods--marker:hover {
+  cursor:pointer;
+  animation:grow 200ms;
+  animation-fill-mode: forwards;
+}
+
+.Neighborhoods--district-info {
+  position:relative;
+  width:28em;
+  height:28em;
+  margin-left:5%;
+  padding:3%;
+}
+
+.selected {
+  z-index:2;
+}
+
+@keyframes grow {
+  from {
+    transform:scale(1);
+  }
+  to {
+    transform:scale(1.25);
+  }
+}
+
+.Neighborhoods--arrows {
+  position:absolute;
+  bottom:7%;
+  left:17%
+}
+.Neighborhoods--arrows button {
+  font-family:inherit;
+  font-size:250%;
+  border:none;
+  background-color:transparent;
+  margin:0% 55px;
+}
+.Neighborhoods--arrows button:hover {
+  cursor:pointer
+}
+
+
+   /*************************************/
+  /************* SeoulMap **************/
+ /* Individual Neighborhood Locations */
+/*************************************/
+
+#M0 { /* Myeongdong - Namdaemun */
+  margin-left:287px;
+  margin-top:-35px;
+}
+
+#S1 { /* Sindangdong */
+  margin-left:345px;
+  margin-top:5px;
+}
+
+#M2 { /* Myeongryundong */
+  margin-left:305px;
+  margin-top:-215px;
+}
+
+#G3 { /* Gwanggyo */
+  margin-left:310px;
+  margin-top:-45px;
+}
+
+#K4 { /* Keumhodong */
+  margin-left:407px;
+  margin-top:65px;
+}
+
+#C5 { /* Cheonhodong */
+  margin-left:512px;
+  margin-top:35px;
+}
+
+#E6 { /* Euljiro - Chungmuro */
+  margin-left:325px;
+  margin-top:-25px;
+}
+
+#J7 { /* Jongno */
+  margin-left:290px;
+  margin-top:-95px;
+}
+
+#I8 { /* Itaewon */
+  margin-left:295px;
+  margin-top:115px;
+}
+
+
+  /***********************/
+ /****** Database *******/
+/***********************/
+.Database--title {
+  margin-bottom:4.5%;
+}
+
+.Database--table {
+  max-height:35em;
+  overflow:scroll;
+  border:1.5px solid #6C6C6C;
+  margin-bottom:4%;
+}
+
+.Database--table:hover {
+  animation:smallGrow 200ms;
+  animation-fill-mode: forwards;
+} 
+
+.Database--headerRow {
+  display:flex;
+  justify-content:flex-start;
+  position:sticky;
+  z-index:2;
+  top:0;
+  padding:2.5% 4%;
+  background-color:white;
+  text-decoration:wavy underline;
+  text-decoration-skip-ink: none;
+  font-weight:700;
+  font-size:20px;
+}
+
+.Database--subtext {
+  width:fit-content;
+  margin-left:auto;
+  font-size:16px;
+  font-weight:400;
+}
+
+.IIIFKeyword {
+  color:#636CFF;
+}
+.IIIFKeyword:hover {
+  cursor:pointer;
+}
+
+
+  /***********************/
+ /******** Row **********/
+/***********************/
+.Row {
+  display:flex;
+  justify-content:flex-start;
+  padding:4%;
+}
+
+.Row > * {
+  margin:0;
+}
+
+.Row--name {
+  flex:1 1 10%;
+}
+
+.Row--neighborhood {
+  flex:1 1 10%;
+  margin-left:2%;
+}
+
+.Row--date {
+  flex:1 1 10%;
+  padding-left:2.5%;
+}
+
+.Row--description {
+  flex:2 1 40%;
+  text-align:left;
+  padding-left:1%;
+}
+
+.Row--IIIFViewer {
+  position:absolute;
+  z-index:1;
+}
+
+.Row--address {
+  flex:1 1 14%;
+  padding-left:3%;
+}
+
+/* note to self for searchbar: highlight color #fff4d4 */
+
+
+  /***********************/
+ /******* About *********/
+/***********************/
+fieldset {
+  margin-top: 3%;
+}
+
+fieldset:hover {
+  animation:smallGrow 200ms;
+  animation-fill-mode: forwards;
+}
+
+legend {
+  font-size:25px;
+  padding-left:15px;
+  padding-right:15px;
+}
+
+legend:hover {
+  cursor:pointer
+}
+
+.panel {
+  padding:1% 2% 2% 2%;
+}
+
+footer {
+  margin-top:10%;
+  padding-bottom:4%;
+  text-align:center;
+}
+
+@keyframes smallGrow {
+  from {
+    transform:scale(1);
+  }
+  to {
+    transform:scale(1.02);
+  }
+}
