@@ -28,6 +28,8 @@ export default function Header(props) {
     x: 0,
     y: 0
   })
+  window.onscroll = function() {
+  }
   React.useEffect(() => {
     function mouseMove(event) {
       setMousePosition({
@@ -54,7 +56,7 @@ export default function Header(props) {
   const archiveImages = [archive_1, archive_2, archive_3, archive_4, archive_5, archive_6, archive_7, archive_8, archive_9]
   const positionToFollowCursorStyling = {
     left:mousePosition.x,
-    top:mousePosition.y
+    top:mousePosition.y + window.scrollY
   }
 
   const title = 'Mapping Queer Seoul'

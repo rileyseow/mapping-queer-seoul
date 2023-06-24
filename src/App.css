@@ -148,7 +148,6 @@ nav {
 
 .Neighborhoods--marker {
   width:45px;
-  z-index:1;
   position:absolute;
 }
 
@@ -164,10 +163,6 @@ nav {
   height:28em;
   margin-left:5%;
   padding:3%;
-}
-
-.selected {
-  z-index:2;
 }
 
 @keyframes grow {
