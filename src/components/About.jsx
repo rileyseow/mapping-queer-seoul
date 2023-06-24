@@ -4,34 +4,51 @@ import '../App.css'
 
 export default function About() {
 
-  const [glowColor, setGlowColor] = React.useState({
-    background:'none',
-    sources:'none',
-    todo:'none'
+  const [sectionDisplays, setSectionDisplays] = React.useState({
+    background:{
+      shown:false,
+      glowColor:'none'
+    },
+    sources:{
+      shown:false,
+      glowColor:'none'
+    },
+    todo:{
+      shown:false,
+      glowColor:'none'
+    }
   })
-  const pastelRainbow = ['#ffa79b', '#ffb48e', '#ffbb77', '#ffc973', '#ffdf80', '#dee190', '#badc9e', '#b5d7cf', '#8eb8f6', '#b4a7ee', '#cf9ce5']
+
+  const pastelRainbow = ['#ffc6bf', '#fccdb5', '#fed3a8', '#ffc973', '#ffebb0', '#dfe1ab', '#c9deb9', '#b8dbd3', '#b1cefa', '#c8bff0', '#dfbfed']
   function setGlow(name) {
-    setGlowColor(prevGlowColor => ({
-        ...prevGlowColor,
-        [name]: `0 0 100px 0.1px ${pastelRainbow[Math.floor(Math.random() * pastelRainbow.length)]}`
-      }))
-  }
-  function removeGlow(name) {
-    setGlowColor(prevGlowColor => ({
-      ...prevGlowColor,
-      [name]: 'none'
+    setSectionDisplays(prevSectionDisplays => ({
+      ...prevSectionDisplays,
+      [name]: {
+        shown:prevSectionDisplays[name].shown,
+        glowColor: `0 0 100px 0.1px ${pastelRainbow[Math.floor(Math.random() * pastelRainbow.length)]}`
+      }
     }))
   }
-
-  const [sectionDisplays, setSectionDisplays] = React.useState({
-    background: false,
-    sources: false,
-    todo: false
-  })
+  function removeGlow(name) {
+    setSectionDisplays(prevSectionDisplays => ({
+      ...prevSectionDisplays,
+      [name]: {
+        shown:prevSectionDisplays[name].shown,
+        glowColor: 'none'
+      }
+    }))
+  }
+  
   function toggleDisplay(name) {
     setSectionDisplays(prevSectionDisplays => ({
       ...prevSectionDisplays,
-      [name]: !prevSectionDisplays[name]
+      [name]: {
+        shown:!prevSectionDisplays[name].shown,
+        glowColor: (prevSectionDisplays[name].shown === true
+                     && prevSectionDisplays[name].glowColor != 'none') 
+                        ? 'none'
+                        : prevSectionDisplays[name].glowColor
+      }
     }))
   }
 
@@ -43,12 +60,12 @@ export default function About() {
       <fieldset onClick={() => toggleDisplay('background')}
                 onMouseEnter={() => setGlow('background')} 
                 onMouseLeave={() => removeGlow('background')} 
-                style={{boxShadow: glowColor['background'],
+                style={{boxShadow: sectionDisplays.background.glowColor,
                         cursor:'pointer'
                       }}
       >
         <legend className='accordion'>Project Background +</legend>
-        {sectionDisplays.background &&
+        {sectionDisplays.background.shown &&
           <div className='panel'>
             <p>Lying at the intersection of the digital humanities and Korean studies, this project is interested in the preservation and accessibility of an informational and photographic archive of lived queer experience in South Korea during the second half of the twentieth century.</p> 
             <p>The site aims to localize and visualize the physical spaces that were taken up, repurposed, and/or queered by South Koreans during a period of rapid industrialization, growing economic inequality, and authoritarian rule — circumstances which presented unique and difficult constraints for sexual and gender non-conforming groups. </p>
@@ -61,12 +78,12 @@ export default function About() {
       <fieldset onClick={() => toggleDisplay('sources')}
                 onMouseEnter={() => setGlow('sources')} 
                 onMouseLeave={() => removeGlow('sources')} 
-                style={{boxShadow: glowColor['sources'],
+                style={{boxShadow: sectionDisplays.sources.glowColor,
                         cursor:'pointer'
                       }}
       >
         <legend className='accordion'>Sources +</legend>
-        {sectionDisplays.sources && 
+        {sectionDisplays.sources.shown && 
           <div className='panel'>
             <p>This project is based on the work of Professor Todd Henry, UCSD. Neighborhood descriptions are copied directly from his lecture pamphlet on gay spatiality in authoritarian-era Seoul (see below). Everything else is written in my own words — but the inspiration for this project and, widely, its informational credit, go to Professor Henry and should be cited accordingly.</p>
             <br/>
@@ -98,18 +115,20 @@ export default function About() {
       <fieldset onClick={() => toggleDisplay('todo')}
                 onMouseEnter={() => setGlow('todo')} 
                 onMouseLeave={() => removeGlow('todo')} 
-                style={{boxShadow: glowColor['todo'],
+                style={{boxShadow: sectionDisplays.todo.glowColor,
                         cursor:'pointer'
                       }}
       >
         <legend className='accordion'>To Do's +</legend>
-        {sectionDisplays.todo &&   
+        {sectionDisplays.todo.shown &&   
           <div className='panel'>
             <ul>
-              <li>GENERAL: make responsive and accessible</li>
-              <li>GENERAL: eng / kor versions (find 한글 font)</li>
+              <li>GENERAL: make responsive and accessible (remember to center neighborhood with display flex)</li>
+              <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
               <br/>
-              <li>NEIGHBORHOODS: scan prof henry's neighborhood maps (9x), have them show up tilted LH side of seoul map when neighborhood is selected (probably unnecessary)</li>
+              <li>NEIGHBORHOODS: add images? (slam animation? scan prof henry's neighborhood maps?)</li>
+              <li>NEIGHBORHOODS: have markers remember z-indices based on click/selected history</li>
+              <li>NEIGHBORHOODS: description UI updates? animate page transitions?</li>
               <br/>
               <li>DATABASE: improve search and replace functionality (correctly strip nonalphanumerics)</li>
               <li>DATABASE: replace default iiif src links with relevant ones (doesn't seem to work on universalviewer? may have to switch systems)</li>

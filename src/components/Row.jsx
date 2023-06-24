@@ -6,7 +6,7 @@ export default function Row(props) {
 
   const [selectedText, setSelectedText] = React.useState('black')
   function select() {
-    setSelectedText('#6896DB')
+    setSelectedText('#699f9f')
   }
   function deselect() {
     setSelectedText('black')

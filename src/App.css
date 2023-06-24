@@ -145,12 +145,14 @@ nav {
 .Neighborhoods--img {
   width:630px;
   margin-right:5%;
+  filter: drop-shadow(3px 3px 4px gray);
 }
 
 .Neighborhoods--marker {
   width:45px;
   z-index:1;
   position:absolute;
+  filter: drop-shadow(3px 3px 4px gray);
 }
 
 .Neighborhoods--marker:hover {
@@ -343,7 +345,7 @@ nav {
   padding-left:3%;
 }
 
-/* note to self for searchbar: highlight color #fff4d4 */
+/* note to self for searchbar: highlight color #f6efdc */
 
 
   /***********************/

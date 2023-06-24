@@ -40,9 +40,9 @@ export default function Database() {
 
       <div className='Database--tableContainer'>
         <div className='Database--table' ref={ref} 
-                                        onScroll={handleScroll} 
-                                        onMouseEnter={() => setHover(true)}
-                                        onMouseLeave={() => setHover(false)}>
+                                         onScroll={handleScroll} 
+                                         onMouseEnter={() => setHover(true)}
+                                         onMouseLeave={() => setHover(false)}>
           <div className='Database--headerRow'>
             <p className='Row--name'>Name</p>
             <p className='Row--neighborhood'>Neighborhood</p>
