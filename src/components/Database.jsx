@@ -37,19 +37,23 @@ export default function Database() {
   return (
     <section>
       <h1 className='Database--title'>Search Database</h1>
-      <div className='Database--table' ref={ref} 
-                                       onScroll={handleScroll} 
-                                       onMouseEnter={() => setHover(true)}
-                                       onMouseLeave={() => setHover(false)}>
-        <div className='Database--headerRow'>
-          <p className='Row--name'>Name</p>
-          <p className='Row--neighborhood'>Neighborhood</p>
-          <p className='Row--date'>Est.</p>
-          <p className='Row--description' id='headerDesc'>Description</p>
-          <p className='Row--address'>Address</p>
+
+      <div className='Database--tableContainer'>
+        <div className='Database--table' ref={ref} 
+                                        onScroll={handleScroll} 
+                                        onMouseEnter={() => setHover(true)}
+                                        onMouseLeave={() => setHover(false)}>
+          <div className='Database--headerRow'>
+            <p className='Row--name'>Name</p>
+            <p className='Row--neighborhood'>Neighborhood</p>
+            <p className='Row--date'>Est.</p>
+            <p className='Row--description' id='headerDesc'>Description</p>
+            <p className='Row--address'>Address</p>
+          </div>
+          {rowElems}
         </div>
-        {rowElems}
       </div>
+
       <h5 className='Database--subtext'
           onMouseEnter={toggleGlow}
           onMouseLeave={toggleGlow}

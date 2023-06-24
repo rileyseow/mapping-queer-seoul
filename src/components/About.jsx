@@ -9,17 +9,17 @@ export default function About() {
     sources:'none',
     todo:'none'
   })
-  const rainbow = ['#ffe1be', '#fcf2c1', '#e3f4d6', '#cbf3f1', '#d3ddf8'];
-  function setGlow(event) {
+  const pastelRainbow = ['#ffe1be', '#fcf2c1', '#e3f4d6', '#cbf3f1', '#d3ddf8'];
+  function setGlow(name) {
     setGlowColor(prevGlowColor => ({
         ...prevGlowColor,
-        [event.target.id]: `0 0 100px 0.1px ${rainbow[Math.floor(Math.random() * rainbow.length)]}`
+        [name]: `0 0 100px 0.1px ${pastelRainbow[Math.floor(Math.random() * pastelRainbow.length)]}`
       }))
   }
-  function removeGlow(event) {
+  function removeGlow(name) {
     setGlowColor(prevGlowColor => ({
       ...prevGlowColor,
-      [event.target.id]: 'none'
+      [name]: 'none'
     }))
   }
 
@@ -28,10 +28,10 @@ export default function About() {
     sources: false,
     todo: false
   })
-  function toggleDisplay(event) {
+  function toggleDisplay(name) {
     setSectionDisplays(prevSectionDisplays => ({
       ...prevSectionDisplays,
-      [event.target.id]: !prevSectionDisplays[event.target.id]
+      [name]: !prevSectionDisplays[name]
     }))
   }
 
@@ -40,13 +40,15 @@ export default function About() {
 
       <h1>About</h1>
 
-      <fieldset id='background' 
-                onMouseEnter={setGlow} 
-                onMouseLeave={removeGlow} 
-                style={{boxShadow: glowColor['background']}}
+      <fieldset onClick={() => toggleDisplay('background')}
+                onMouseEnter={() => setGlow('background')} 
+                onMouseLeave={() => removeGlow('background')} 
+                style={{boxShadow: glowColor['background'],
+                        cursor:'pointer'
+                      }}
       >
-        <legend className='accordion' onClick={toggleDisplay} id='background'>Project Background +</legend>
-        {sectionDisplays.background && 
+        <legend className='accordion'>Project Background +</legend>
+        {sectionDisplays.background &&
           <div className='panel'>
             <p>Lying at the intersection of the digital humanities and Korean studies, this project is interested in the preservation and accessibility of an informational and photographic archive of lived queer experience in South Korea during the second half of the twentieth century.</p> 
             <p>The site aims to localize and visualize the physical spaces that were taken up, repurposed, and/or queered by South Koreans during a period of rapid industrialization, growing economic inequality, and authoritarian rule — circumstances which presented unique and difficult constraints for sexual and gender non-conforming groups. </p>
@@ -56,12 +58,14 @@ export default function About() {
         }
       </fieldset>
 
-      <fieldset id='sources' 
-                onMouseEnter={setGlow} 
-                onMouseLeave={removeGlow} 
-                style={{boxShadow: glowColor['sources']}}
+      <fieldset onClick={() => toggleDisplay('sources')}
+                onMouseEnter={() => setGlow('sources')} 
+                onMouseLeave={() => removeGlow('sources')} 
+                style={{boxShadow: glowColor['sources'],
+                        cursor:'pointer'
+                      }}
       >
-        <legend className='accordion' onClick={toggleDisplay} id='sources'>Sources +</legend>
+        <legend className='accordion'>Sources +</legend>
         {sectionDisplays.sources && 
           <div className='panel'>
             <p>This project is based on the work of Professor Todd Henry, UCSD. Neighborhood descriptions are copied directly from his lecture pamphlet on gay spatiality in authoritarian-era Seoul (see below). Everything else is written in my own words — but the inspiration for this project and, widely, its informational credit, go to Professor Henry and should be cited accordingly.</p>
@@ -91,12 +95,14 @@ export default function About() {
         }
       </fieldset>
 
-      <fieldset id='todo' 
-                onMouseEnter={setGlow} 
-                onMouseLeave={removeGlow} 
-                style={{boxShadow: glowColor['todo']}}
+      <fieldset onClick={() => toggleDisplay('todo')}
+                onMouseEnter={() => setGlow('todo')} 
+                onMouseLeave={() => removeGlow('todo')} 
+                style={{boxShadow: glowColor['todo'],
+                        cursor:'pointer'
+                      }}
       >
-        <legend className='accordion' onClick={toggleDisplay} id='todo'>To Do's +</legend>
+        <legend className='accordion'>To Do's +</legend>
         {sectionDisplays.todo &&   
           <div className='panel'>
             <ul>

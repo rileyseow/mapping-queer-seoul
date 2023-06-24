@@ -47,9 +47,8 @@ export default function Header(props) {
   const mapImageElems = mapImages.map((file, index) => (
     <img key={index}
          src={file} 
-         onMouseEnter={() => {
-          setTileHovered(index + 1)
-         }} 
+         onMouseEnter={() => setTileHovered(index + 1)}
+         onMouseLeave={() => setTileHovered(0)}
     />
   ))
   const archiveImages = [archive_1, archive_2, archive_3, archive_4, archive_5, archive_6, archive_7, archive_8, archive_9]
@@ -63,11 +62,13 @@ export default function Header(props) {
   for (let i = 0; i < title.length; i++) {
     defaultTitleColors[i] = 'black'
   }
+  const rainbow = ['#EE705F', '#ED8450', '#EC9740', '#EEAD42', '#EFC344', '#BFC255', '#8EC065', '#7BABA0', '#6896DB', '#8C7CD7', '#B061D3'];
   const [titleColors, setTitleColors] = React.useState(defaultTitleColors)
   function randomizeCharColor(event) {
     setTitleColors(prevTitleColors => ({
       ...prevTitleColors,
-      [event.target.id]: `#${Math.floor(Math.random()*16777215).toString(16)}`
+      //[event.target.id]: `#${Math.floor(Math.random()*16777215).toString(16)}`
+      [event.target.id]: `${rainbow[Math.floor(Math.random() * rainbow.length)]}`
     }))
   }
   const titleElems = title.split('').map((char, index) => (
@@ -86,11 +87,10 @@ export default function Header(props) {
 
   return (
     <nav>
-      <div className='Header--tiles' onMouseLeave={() => setTileHovered(0)}>
+      <div className='Header--tiles'>
         {mapImageElems}
       </div>
       {tileHovered != 0 
-          && tileHovered != 9
           && <img className='Header--archiveImgPopUp' 
                      src={archiveImages[(tileHovered) - 1]} 
                      style={positionToFollowCursorStyling}
