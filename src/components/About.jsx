@@ -9,7 +9,7 @@ export default function About() {
     sources:'none',
     todo:'none'
   })
-  const pastelRainbow = ['#ffe1be', '#fcf2c1', '#e3f4d6', '#cbf3f1', '#d3ddf8'];
+  const pastelRainbow = ['#ffa79b', '#ffb48e', '#ffbb77', '#ffc973', '#ffdf80', '#dee190', '#badc9e', '#b5d7cf', '#8eb8f6', '#b4a7ee', '#cf9ce5']
   function setGlow(name) {
     setGlowColor(prevGlowColor => ({
         ...prevGlowColor,
