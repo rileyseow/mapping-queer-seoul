@@ -105,9 +105,9 @@ export default function About() {
             <p>Design / methodology inspiration from:</p>
             <ul>
               <li>The U.S. Press Freedom Tracker (<a target='_blank' href='https://pressfreedomtracker.us/'>https://pressfreedomtracker.us/</a>)</li>
-              <li>Liberated Africans (<a target='_blank' href='https://www.liberatedafricans.org/public/index.php'>https://www.liberatedafricans.org/public/index.php</a>)</li>
+              <li>Liberated Africans (<a target='_blank' href='https://www.liberatedafricans.org/public/index.php'>https://www.liberatedafricans.org</a>)</li>
               <li>Queering the Map (<a target='_blank' href='https://www.queeringthemap.com/'>https://www.queeringthemap.com/</a>)</li>
-            </ul>
+            </ul> 
           </div>
         }
       </fieldset>
@@ -125,6 +125,8 @@ export default function About() {
             <ul>
               <li>GENERAL: make responsive and accessible (remember to center neighborhood with display flex)</li>
               <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
+              <br/>
+              <li>NAV: lazy load header images</li>
               <br/>
               <li>NEIGHBORHOODS: add images? (slam animation? scan prof henry's neighborhood maps?)</li>
               <li>NEIGHBORHOODS: have markers remember z-indices based on click/selected history</li>

@@ -85,9 +85,10 @@ const Neighborhoods = React.forwardRef((props, ref) => {
     <section ref={ref}>
       <h1>Explore by Neighborhood</h1>
       <div className='Neighborhoods--search-districts'>
-
-        {markerElems}
-        <img className='Neighborhoods--img' src={seoul_map} />
+        <div className='Neighborhoods--imgContainer'>
+          {markerElems}
+          <img src={seoul_map} />
+        </div>
 
         <fieldset className='Neighborhoods--district-info'>
           <legend className='accordion'>

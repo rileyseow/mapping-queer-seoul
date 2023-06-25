@@ -89,19 +89,23 @@ export default function Header(props) {
 
   return (
     <nav>
-      <div className='Header--tiles'>
-        {mapImageElems}
+      <div>
+        <div className='Header--tiles'>
+          {mapImageElems}
+        </div>
+        {tileHovered != 0 
+            && <img className='Header--archiveImgPopUp' 
+                      src={archiveImages[(tileHovered) - 1]} 
+                      style={positionToFollowCursorStyling}
+              />
+        }
       </div>
-      {tileHovered != 0 
-          && <img className='Header--archiveImgPopUp' 
-                     src={archiveImages[(tileHovered) - 1]} 
-                     style={positionToFollowCursorStyling}
-             />
-      }
 
-      <h1>{titleElems}</h1>
-      <h3>A digital mapping project for historically queer spaces in Seoul, South Korea.</h3>
-      <button className='Header--downBtn' onClick={scrollDown}>↓</button>
+      <div className='Header--text'>
+        <h1>{titleElems}</h1>
+        <h3>A digital mapping project for historically queer spaces in Seoul, South Korea.</h3>
+        <button className='Header--downBtn' onClick={scrollDown}>↓</button>
+      </div>
     </nav>
   )
 }

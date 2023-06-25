@@ -30,6 +30,7 @@ body {
   font-family: 'Edition-International', Sans-Serif;
   font-weight:normal;
   cursor:default;
+  overflow-wrap:break-word;
   margin: 0;
   place-items: center;
   min-width: 320px;
@@ -37,11 +38,22 @@ body {
   background-color:#FAF9F6;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 h1 {
   font-size: 3.2em;
   font-weight:normal;
   line-height: 1.1;
   margin-bottom:2%;
+}
+
+@media (max-width:390px) {
+  h1 {
+    font-size:2.6em;
+  }
 }
 
 section {
@@ -63,15 +75,47 @@ a:hover {
  /****** Nav *******/
 /******************/
 nav {
-  padding: 20% 15% 1% 6%;
+  padding: 20% 12% 1% 6%;
   text-align:right;
   margin-bottom:12%
 }
 
+@media (max-width: 1375px) {
+  .Header--text {
+    width:560px;
+    margin-left:auto;
+  }
+}
+@media (max-width:1250px) {
+  .Header--text {
+    width:360px;
+  }
+}
+@media (max-width: 1025px) {
+  .Header--text {
+    margin-top:25%;
+  }
+}
+@media (max-width: 775px) {
+  .Header--text {
+    margin-top:35%;
+  }
+}
+@media (max-width: 560px) {
+  .Header--text {
+    margin-top:50%;
+  }
+}
+@media (max-width: 440px) {
+  .Header--text {
+    margin-top:75%;
+    width:95%;
+  }
+}
+
 .Header--downBtn {
-  position:absolute;
-  top:75%;
-  right:20%;
+  margin-top:4%;
+  margin-right:5%;
   background-color:#FAF9F6;
   font-size:50px;
   border: 1px solid transparent;
@@ -82,17 +126,20 @@ nav {
 
 @keyframes downwards {
   0% {
-    padding-top: 0;
+    transform:translateY(0);
   }
   50% {
-    padding-top: 1.5%;
+    transform:translateY(-30px);
   }
   100% {
-    padding-top: 0;
+    transform:translateY(0);
   }
 }
 
 .Header--tiles {
+  max-width:65%;
+  min-width:280px;
+  max-height:45%;
   position:absolute;
   display:grid;
   grid-template-columns: repeat(3, 31%);
@@ -103,8 +150,6 @@ nav {
 
 .Header--tiles > img {
   object-fit:cover;
-  width:100%;
-  max-height:100%;
   cursor:zoom-in;
 }
 
@@ -124,6 +169,17 @@ nav {
   margin-left:15px;
 }
 
+@media (max-width: 1100px) {
+  .Header--archiveImgPopUp {
+    width:15%;
+  }
+}
+@media (max-width: 760px) {
+  .Header--archiveImgPopUp {
+    width:20%;
+  }
+}
+
 @keyframes appear {
   from {
     transform:scale(0);
@@ -140,12 +196,28 @@ nav {
 .Neighborhoods--search-districts {
   display:flex;
   align-items:center;
+  justify-content:space-around;
 }
 
-.Neighborhoods--img {
+.Neighborhoods--imgContainer {
+  position:relative;
   width:630px;
-  margin-right:5%;
+  padding:3%;
   filter: drop-shadow(3px 3px 4px gray);
+}
+
+@media (max-width:935px) {
+  .Neighborhoods--search-districts {
+    flex-direction:column;
+  }
+  .Neighborhoods--imgContainer { 
+    max-width:100%;
+    padding:0%;
+    margin-bottom:3%;
+  }
+  .Neighborhoods--district-info {
+    max-width:70%;
+  }
 }
 
 .Neighborhoods--marker {
@@ -161,16 +233,21 @@ nav {
   animation-fill-mode: forwards;
 }
 
+.selected {
+  z-index:2;
+}
+
+@media (max-width:810px) {
+  .Neighborhoods--marker {
+    width:35px;
+  }
+}
+
 .Neighborhoods--district-info {
   position:relative;
   width:28em;
   height:28em;
-  margin-left:5%;
   padding:3%;
-}
-
-.selected {
-  z-index:2;
 }
 
 @keyframes grow {
@@ -203,50 +280,51 @@ nav {
   /************* SeoulMap **************/
  /* Individual Neighborhood Locations */
 /*************************************/
-
 #M0 { /* Myeongdong - Namdaemun */
-  margin-left:287px;
-  margin-top:-35px;
+  top:44%;
+  left:46%;
+  z-index:3;
 }
 
 #S1 { /* Sindangdong */
-  margin-left:345px;
-  margin-top:5px;
+  top:46%;
+  left:54.5%;
 }
 
 #M2 { /* Myeongryundong */
-  margin-left:305px;
-  margin-top:-215px;
+  top:32%;
+  left:48.5%;
 }
 
 #G3 { /* Gwanggyo */
-  margin-left:310px;
-  margin-top:-45px;
+  top:42.5%;
+  left:48%;
+  z-index:2;
 }
 
 #K4 { /* Keumhodong */
-  margin-left:407px;
-  margin-top:65px;
+  top:52%;
+  left:63.5%;
 }
 
 #C5 { /* Cheonhodong */
-  margin-left:512px;
-  margin-top:35px;
+  top:48%;
+  left:79%;
 }
 
 #E6 { /* Euljiro - Chungmuro */
-  margin-left:325px;
-  margin-top:-25px;
+  top:44%;
+  left:51%;
 }
 
 #J7 { /* Jongno */
-  margin-left:290px;
-  margin-top:-95px;
+  top:39%;
+  left:46%;
 }
 
 #I8 { /* Itaewon */
-  margin-left:295px;
-  margin-top:115px;
+  top:54%;
+  left:46%;
 }
 
 
@@ -284,7 +362,7 @@ nav {
   text-decoration:wavy underline;
   text-decoration-skip-ink: none;
   font-weight:700;
-  font-size:20px;
+  font-size:1.4vw;
 }
 
 .Database--subtext {
@@ -309,6 +387,7 @@ nav {
   display:flex;
   justify-content:flex-start;
   padding:4%;
+  font-size:1.2vw;
 }
 
 .Row > * {
@@ -352,6 +431,7 @@ nav {
  /******* About *********/
 /***********************/
 fieldset {
+  min-width:0; /* min-width:-webkit-min-content is default on chrome. */
   margin-top: 3%;
 }
 
@@ -372,7 +452,7 @@ legend {
 
 footer {
   margin-top:10%;
-  padding-bottom:4%;
+  padding:4%;
   text-align:center;
 }
 
