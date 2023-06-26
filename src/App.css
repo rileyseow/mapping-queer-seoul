@@ -116,6 +116,7 @@ nav {
 .Header--downBtn {
   margin-top:4%;
   margin-right:5%;
+  color:black;
   background-color:#FAF9F6;
   font-size:50px;
   border: 1px solid transparent;
@@ -206,20 +207,6 @@ nav {
   filter: drop-shadow(3px 3px 4px gray);
 }
 
-@media (max-width:935px) {
-  .Neighborhoods--search-districts {
-    flex-direction:column;
-  }
-  .Neighborhoods--imgContainer { 
-    max-width:100%;
-    padding:0%;
-    margin-bottom:3%;
-  }
-  .Neighborhoods--district-info {
-    max-width:70%;
-  }
-}
-
 .Neighborhoods--marker {
   width:45px;
   z-index:1;
@@ -234,19 +221,12 @@ nav {
 }
 
 .selected {
-  z-index:2;
-}
-
-@media (max-width:810px) {
-  .Neighborhoods--marker {
-    width:35px;
-  }
+  z-index:4 !important;
 }
 
 .Neighborhoods--district-info {
-  position:relative;
-  width:28em;
-  height:28em;
+  width:31vw;
+  height:32vw;
   padding:3%;
 }
 
@@ -259,11 +239,92 @@ nav {
   }
 }
 
-.Neighborhoods--arrows {
-  position:absolute;
-  bottom:7%;
-  left:17%
+.Neighborhoods--panelContainer {
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
 }
+
+.Neighborhoods--description {
+  height:25vw;
+}
+
+@media (max-width:1330px) {
+  .Neighborhoods--imgContainer {
+    width:50%;
+  }
+  .Neighborhoods--district-info {
+    width:50%;
+  }
+  .Neighborhoods--marker {
+    width:38px;
+  }
+}
+@media (max-width:1165px) {
+  .Neighborhoods--search-districts {
+    flex-direction:column;
+  }
+  .Neighborhoods--imgContainer { 
+    width:55%;
+    padding:0%;
+  }
+  .Neighborhoods--district-info {
+    width:94%;
+    height:36vw;
+  }
+  .Neighborhoods--description {
+    height:24.5vw;
+  }
+}
+@media (max-width:975px) {
+  .Neighborhoods--marker {
+    width:35px;
+  }
+}
+@media (max-width:805px) {
+  .Neighborhoods--imgContainer {
+    width:75%;
+  }
+  .Neighborhoods--district-info {
+    height:48vw;
+  }
+  .Neighborhoods--description {
+    height:35vw;
+  }
+}
+@media (max-width:650px) {
+  .Neighborhoods--district-info {
+    height:75vw;
+  }
+  .Neighborhoods--description {
+    height:59vw;
+  }
+  .Neighborhoods--marker {
+    width:30px;
+  }
+}
+@media (max-width:525px) {
+  .Neighborhoods--imgContainer {
+    width:100%;
+  }
+  .Neighborhoods--district-info {
+    height:100%; /* dummy % value for pos rel (?) */
+  }
+  .Neighborhoods--description {
+    height:100%; /* dummy % value for pos rel (?) */
+  }
+}
+@media (max-width:390px) {
+  .Neighborhoods--marker {
+    width:25px;
+  }
+}
+
+.Neighborhoods--arrows {
+  display:flex;
+  justify-content:center;
+}
+
 .Neighborhoods--arrows button {
   font-family:inherit;
   font-size:250%;
@@ -271,6 +332,7 @@ nav {
   background-color:transparent;
   margin:0% 55px;
 }
+
 .Neighborhoods--arrows button:hover {
   cursor:pointer
 }

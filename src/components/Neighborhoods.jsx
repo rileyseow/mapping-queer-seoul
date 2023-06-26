@@ -94,12 +94,14 @@ const Neighborhoods = React.forwardRef((props, ref) => {
           <legend className='accordion'>
             📍 {Object.values(districtNames)[selectedDistrict.district]}
           </legend>
-          <div className='panel'>
-            {getPage(Object.values(districtDescs)[selectedDistrict.district], selectedDistrict.page)}
-          </div>
-          <div className='Neighborhoods--arrows'>
-            <button onClick={handleLeftClick} disabled={selectedDistrict.page === 0 ? true : false}>←</button>
-            <button onClick={handleRightClick} disabled={selectedDistrict.page === selectedDistrict.totalPages - 1 ? true : false}>→</button>
+          <div className='Neighborhoods--panelContainer'>
+            <div className='panel Neighborhoods--description'>
+              {getPage(Object.values(districtDescs)[selectedDistrict.district], selectedDistrict.page)}
+            </div>
+            <div className='Neighborhoods--arrows'>
+              <button onClick={handleLeftClick} disabled={selectedDistrict.page === 0 ? true : false}>←</button>
+              <button onClick={handleRightClick} disabled={selectedDistrict.page === selectedDistrict.totalPages - 1 ? true : false}>→</button>
+            </div>
           </div>
         </fieldset>
 
