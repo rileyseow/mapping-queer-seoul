@@ -329,12 +329,18 @@ nav {
   font-family:inherit;
   font-size:250%;
   border:none;
+  color:black;
   background-color:transparent;
   margin:0% 55px;
 }
 
 .Neighborhoods--arrows button:hover {
   cursor:pointer
+}
+
+button:disabled {
+  color: #B3B3B1;
+  cursor:default !important;
 }
 
 

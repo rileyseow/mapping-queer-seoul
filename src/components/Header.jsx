@@ -59,6 +59,10 @@ export default function Header(props) {
     top:mousePosition.y + window.scrollY
   }
 
+  React.useEffect(() => {
+    archiveImages.forEach(img => new Image().src = img)
+  }, [])
+
   const title = 'Mapping Queer Seoul'
   const defaultTitleColors = {}
   for (let i = 0; i < title.length; i++) {

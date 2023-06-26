@@ -123,10 +123,13 @@ export default function About() {
         {sectionDisplays.todo.shown &&   
           <div className='panel'>
             <ul>
-              <li>GENERAL: make responsive and accessible (remember to center neighborhood with display flex)</li>
+              <li>GENERAL: make database section responsive</li>
+              <li>GENERAL: make header interactivity (map + title) smartphone-friendly</li>
+              <li>GENERAL: make site accessible</li>
               <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
+              <li>GENERAL: comment code</li>
               <br/>
-              <li>NAV: lazy load header images</li>
+              <li>NAV: preload header images</li>
               <br/>
               <li>NEIGHBORHOODS: add images? (slam animation? scan prof henry's neighborhood maps?)</li>
               <li>NEIGHBORHOODS: have markers remember z-indices based on click/selected history</li>
