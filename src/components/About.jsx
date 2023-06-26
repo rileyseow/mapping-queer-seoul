@@ -124,12 +124,10 @@ export default function About() {
           <div className='panel'>
             <ul>
               <li>GENERAL: make database section responsive</li>
-              <li>GENERAL: make header interactivity (map + title) smartphone-friendly</li>
+              <li>GENERAL: make header interactivity (map + title) smartphone-friendly (simulate hover movements??)</li>
               <li>GENERAL: make site accessible</li>
               <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
               <li>GENERAL: comment code</li>
-              <br/>
-              <li>NAV: preload header images</li>
               <br/>
               <li>NEIGHBORHOODS: add images? (slam animation? scan prof henry's neighborhood maps?)</li>
               <li>NEIGHBORHOODS: have markers remember z-indices based on click/selected history</li>

@@ -208,7 +208,7 @@ nav {
 }
 
 .Neighborhoods--marker {
-  width:45px;
+  width:7%;
   z-index:1;
   position:absolute;
   filter: drop-shadow(3px 3px 4px gray);
@@ -256,9 +256,6 @@ nav {
   .Neighborhoods--district-info {
     width:50%;
   }
-  .Neighborhoods--marker {
-    width:38px;
-  }
 }
 @media (max-width:1165px) {
   .Neighborhoods--search-districts {
@@ -277,9 +274,6 @@ nav {
   }
 }
 @media (max-width:975px) {
-  .Neighborhoods--marker {
-    width:35px;
-  }
 }
 @media (max-width:805px) {
   .Neighborhoods--imgContainer {
@@ -299,9 +293,6 @@ nav {
   .Neighborhoods--description {
     height:59vw;
   }
-  .Neighborhoods--marker {
-    width:30px;
-  }
 }
 @media (max-width:525px) {
   .Neighborhoods--imgContainer {
@@ -312,11 +303,6 @@ nav {
   }
   .Neighborhoods--description {
     height:100%; /* dummy % value for pos rel (?) */
-  }
-}
-@media (max-width:390px) {
-  .Neighborhoods--marker {
-    width:25px;
   }
 }
 
@@ -530,5 +516,44 @@ footer {
   }
   to {
     transform:scale(1.02);
+  }
+}
+
+
+    /************************************/
+   /********* Responsivity for *********/
+  /** screens bigger than my screen ***/
+ /****** (1440px, macbook air) *******/
+/******* (didn't realize) 🥲 ********/
+@media (min-width:1440px) {
+  h1 {
+    font-size:4vw;
+  }
+  h3 {
+    font-size:1.5vw;
+  }
+  .Header--downBtn, 
+  .Neighborhoods--arrows button {
+    font-size:3vw;
+  }
+  legend {
+    font-size:2vw;
+  }
+  .Database--headerRow {
+    font-size:1.7vw;
+  }
+  fieldset, .Database--subtext, footer {
+    font-size:1.2vw;
+  }
+
+  .Header--tiles > img {
+    max-width:100%;
+    width:13vw;
+  }
+  .Neighborhoods--imgContainer {
+    width: 44vw;
+  }
+  .Neighborhoods--marker {
+    width:3vw;
   }
 }
