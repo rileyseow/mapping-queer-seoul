@@ -77,7 +77,7 @@ a:hover {
 nav {
   padding: 20% 12% 1% 6%;
   text-align:right;
-  margin-bottom:12%
+  margin-bottom:12%;
 }
 
 @media (max-width: 1375px) {
@@ -394,7 +394,7 @@ button:disabled {
 }
 
 .Database--table {
-  max-height:35em;
+  height:42vw;
   overflow:scroll;
   border:1.5px solid #6C6C6C;
   margin-bottom:4%;

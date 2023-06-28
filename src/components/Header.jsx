@@ -28,8 +28,6 @@ export default function Header(props) {
     x: 0,
     y: 0
   })
-  window.onscroll = function() {
-  }
   React.useEffect(() => {
     function mouseMove(event) {
       setMousePosition({
@@ -47,7 +45,8 @@ export default function Header(props) {
   const [tileHovered, setTileHovered] = React.useState(0)
   const mapImages = [map_1, map_2, map_3, map_4, map_5, map_6, map_7, map_8, map_9]
   const mapImageElems = mapImages.map((file, index) => (
-    <img key={index}
+    <img key={index + 1}
+         id={index + 1}
          src={file} 
          onMouseEnter={() => setTileHovered(index + 1)}
          onMouseLeave={() => setTileHovered(0)}
@@ -90,26 +89,68 @@ export default function Header(props) {
     props.resultRef.current?.scrollIntoView({behavior: 'smooth'})
   }
 
+  const [isDragging, setIsDragging] = React.useState(false)
+  const [currTouchInfo, setCurrTouchInfo] = React.useState({
+    x:0,
+    y:0,
+    element:null
+  })
+  function handleMobileDrag(event) {
+    setCurrTouchInfo({
+      x:event.touches[0].clientX, 
+      y:event.touches[0].clientY,
+      get element() {
+        return document.elementFromPoint(this.x, this.y)
+      }
+    })
+  }
+  React.useEffect(() => {
+    if (currTouchInfo.element) {
+      if (currTouchInfo.element.tagName === 'IMG') {
+        setTileHovered(currTouchInfo.element.id)
+      } else if (currTouchInfo.element.tagName === 'SPAN') {
+        setTitleColors(prevTitleColors => ({
+          ...prevTitleColors,
+          [currTouchInfo.element.id]: `${rainbow[Math.floor(Math.random() * rainbow.length)]}`
+        }))
+      } else {
+        if (tileHovered != 0) setTileHovered(0)
+      }
+    }
+  }, [currTouchInfo])
+  React.useEffect(() => {
+    if (!isDragging) setTileHovered(0)
+  }, [isDragging])
+
 
   return (
-    <nav>
-      <div>
-        <div className='Header--tiles'>
-          {mapImageElems}
-        </div>
-        {tileHovered != 0 
-            && <img className='Header--archiveImgPopUp' 
-                      src={archiveImages[(tileHovered) - 1]} 
-                      style={positionToFollowCursorStyling}
-              />
-        }
-      </div>
-
-      <div className='Header--text'>
-        <h1>{titleElems}</h1>
-        <h3>A digital mapping project for historically queer spaces in Seoul, South Korea.</h3>
-        <button className='Header--downBtn' onClick={scrollDown}>↓</button>
-      </div>
-    </nav>
+    <div style={{touchAction: currTouchInfo.element
+                  && (currTouchInfo.element.tagName === 'IMG' || currTouchInfo.element.tagName === 'SPAN')
+                     ? 'none' 
+                     : 'auto'}}>
+      <nav onTouchStart={() => setIsDragging(true)}
+           onTouchMove={handleMobileDrag}
+           onTouchEnd={() => setIsDragging(false)}>
+         <div>
+           <div className='Header--tiles'>
+             {mapImageElems}
+           </div>
+           {tileHovered != 0 
+               && <img className='Header--archiveImgPopUp' 
+                         src={archiveImages[(tileHovered) - 1]} 
+                         style={isDragging 
+                                   ? {left:currTouchInfo.x, top:currTouchInfo.y}
+                                   : positionToFollowCursorStyling}
+                   />
+           }
+         </div>
+ 
+         <div className='Header--text'>
+           <h1>{titleElems}</h1>
+           <h3>A digital mapping project for historically queer spaces in Seoul, South Korea.</h3>
+           <button className='Header--downBtn' onClick={scrollDown}>↓</button>
+         </div>
+       </nav>
+    </div>
   )
 }
