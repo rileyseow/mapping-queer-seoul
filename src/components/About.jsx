@@ -4,6 +4,7 @@ import '../App.css'
 
 export default function About() {
 
+  /* state: track display of each fieldset */
   const [sectionDisplays, setSectionDisplays] = React.useState({
     background:{
       shown:false,
@@ -19,6 +20,7 @@ export default function About() {
     }
   })
 
+  /* behavior: handle glow color of each fieldset on hover */
   const pastelRainbow = ['#ffc6bf', '#fccdb5', '#fed3a8', '#ffc973', '#ffebb0', '#dfe1ab', '#c9deb9', '#b8dbd3', '#b1cefa', '#c8bff0', '#dfbfed']
   function setGlow(name) {
     setSectionDisplays(prevSectionDisplays => ({
@@ -39,6 +41,7 @@ export default function About() {
     }))
   }
   
+  /* behavior: handle whether each fieldset is displayed on click */
   function toggleDisplay(name) {
     setSectionDisplays(prevSectionDisplays => ({
       ...prevSectionDisplays,
@@ -52,6 +55,10 @@ export default function About() {
     }))
   }
 
+
+     /*********************/
+    /*** JSX RENDERING ***/
+   /*********************/
   return (
     <section>
 
@@ -125,10 +132,9 @@ export default function About() {
             <ul>
               <li>GENERAL: make site accessible</li>
               <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
-              <li>GENERAL: comment code</li>
               <br/>
               <li>NEIGHBORHOODS: add images? (slam animation? scan prof henry's neighborhood maps?)</li>
-              <li>NEIGHBORHOODS: have markers remember z-indices based on click/selected history</li>
+              <li>NEIGHBORHOODS: have markers remember z-indices based on click history</li>
               <li>NEIGHBORHOODS: description UI updates? animate page transitions?</li>
               <br/>
               <li>DATABASE: tweak image popup locations -- when to set new location or not</li>

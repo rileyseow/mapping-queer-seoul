@@ -6,6 +6,7 @@ import default_marker from '../assets/map_marker_default.png'
 import rainbow_marker from '../assets/map_marker_rainbow.png'
 
 
+/* const: object storing neighborhood ids : neighborhood names */
 const districtNames = {
   0: "Myeongdong - Namdaemun",
   1: "Sindangdong",
@@ -18,6 +19,7 @@ const districtNames = {
   8: "Itaewon"
 }
 
+/* const: object storing neighborhood ids : neighborhood descriptions */
 const districtDescs = {
   0: "After the Korean War (1950-1953), gay men and lesbian women as well as gender non-conforming and intersex people created innovative ways to appropriate heterosexual-dominated places in the creation of 'queer hubs.' The most important of these hubs during the 1950s and 1960s was Myeongdong / Namdaemun. Once home to approximately 150,000 Japanese settlers, Honmachi, as it was called during the colonial era (1910-1945), was popular for its tearooms, cafes, beauty salons, boutiques, department stores, and theaters. That Myeongdong continued to function as Seoul's cultural center after 1945 is a reminder of the undeniable power of post-colonialism — that this once occupied place continued to embody earlier histories of Japanese imperialism even after (South) Koreans regained their independence. From the 1950s and 1960s, gay fashion designers, dancers, and artists frequented such iconic tearooms such as Simji, Cheongja, Fiancé, Yanji, and Isabelle. They also met at neighborhood entertainment venues such as Myeongdong Theater (1946-1975) [earlier, Nanghwagwan (est. 1909)] and Donghwa Theater (1954-1982) [earlier, Sinbujwa (est. 1932) and Hanseong Theater (renamed in 1947); today, Lotte Young Plaza Myeongdong], transforming these straight sites into queer hangouts. From at least the 1970s, lesbian women also met in this entertainment district, gathering in such tearooms as the short-lived Channel (1973-1976), located behind the UNESCO building. So, too, did a growing number of Japanese male tourists who, after the normalization treaty of 1965, travelled or returned to Seoul, some of whom used this and other queer hubs to meet South Korean men for sex, friendships, and relationships.",
   1: "In addition to the Myeongdong / Namdaemun area, Sindangdong was one of the first queer hubs where gay men congregated in post-liberation Korea. Fragmentary evidence suggests that some small pubs (names are unclear) also emerged in the area between what is today Sindang Station and Wangsimni Station. In Sindangdong, Gwangmu Theater (1930-1986) and Seongdong Theater (1962-1996), both located near the Central Market, were popular cruising sites by the 1960s and 1970s; later, during the 1980s, several exclusive gay bars (i.e., Kevin and Five Seasons) appeared nearby, demonstrating the powerful effect of theaters as anchors of homo-spatiality.",
@@ -33,14 +35,17 @@ const districtDescs = {
 
 const Neighborhoods = React.forwardRef((props, ref) => {
 
+  /* const: wordcount cut off for each page of the neighborhood description */
   const sliceWordCount = 100
 
+  /* state: track currently selected neighborhood */
   const [selectedDistrict, setSelectedDistrict] = React.useState({
     district: 0,
     page: 0,
     totalPages: 3
   })
 
+  /* behavior: handle click of neighborhood marker icon */
   function selectDistrict(event) {
     const districtKey = event.target.id[1]
     setSelectedDistrict({
@@ -49,24 +54,25 @@ const Neighborhoods = React.forwardRef((props, ref) => {
       totalPages: Math.ceil(districtDescs[districtKey].split(' ').length / sliceWordCount)
     })
   }
-
+  /* element mapping: render img for each neighborhood marker icon on the map */
   const markerElems = Object.keys(districtNames).map(districtKey => {
-    // id = district firstLetter + index (districtKey)
     return <img className={`Neighborhoods--marker ${selectedDistrict.district == districtKey ? 'selected' : 'dummyClass'}`}
             src={selectedDistrict.district == districtKey 
               ? rainbow_marker
               : default_marker} 
             key={districtKey}
+            // note: id = (first letter of neighborhood name) + (neighborhood id #)
             id={`${districtNames[districtKey][0]}${districtKey}`}
             onClick={selectDistrict}
           />
   })
 
+  /* behavior: get current page of neighborhood description to display */
   function getPage(str, pageNum) {
-    // splits descriptions up every sliceWordCount words (100)
     const start = pageNum * sliceWordCount;
     return str.split(' ').slice(start, start + sliceWordCount).join(' ')
   }
+  /* behavior: handle clicks on neighborhood description box for previous page and next page */
   function handleLeftClick() {
     setSelectedDistrict(prevSelectedDistrict => ({
       ...prevSelectedDistrict,
@@ -81,6 +87,9 @@ const Neighborhoods = React.forwardRef((props, ref) => {
   }
 
 
+     /*********************/
+    /*** JSX RENDERING ***/
+   /*********************/
   return (
     <section ref={ref}>
       <h1>Explore by Neighborhood</h1>

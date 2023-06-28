@@ -3,6 +3,10 @@ import '../App.css'
 
 
 export default function Footer() {
+  
+     /*********************/
+    /*** JSX RENDERING ***/
+   /*********************/
   return (
     <footer>
       <p>This is a personal side project. Written in preparation for a software engineering interview at UCLA Libraries.</p>

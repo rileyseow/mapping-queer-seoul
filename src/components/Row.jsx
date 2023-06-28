@@ -4,6 +4,7 @@ import '../App.css'
 
 export default function Row(props) {
 
+  /* state: track which row is being hovered (change color of hovered row to aqua green) */
   const [selectedText, setSelectedText] = React.useState('black')
   function select() {
     setSelectedText('#699f9f')
@@ -12,6 +13,12 @@ export default function Row(props) {
     setSelectedText('black')
   }
 
+
+     /*********************/
+    /**** IIIF VIEWER ****/
+   /*********************/
+  /* state: track hover state, click state, and x-y location of each row's description keyword(s) 
+     (stored in props.additionalDocumentsLinks) */
   let stateArr = new Array(props.additionalDocumentsLinks.length).fill({
     hovered:false,
     clicked: false,
@@ -19,6 +26,7 @@ export default function Row(props) {
     y: 0
   })
   const [IIIFViewers, setIIIFViewers] = React.useState(stateArr)
+  /* behavior: show + freeze IIIF viewer popup on keyword click */
   function handleKeywordClick(keywordIndex) {
     setIIIFViewers(prevIIIFViewers => prevIIIFViewers.map((elem, index) => {
       if (index === keywordIndex) {
@@ -32,6 +40,7 @@ export default function Row(props) {
       }
     }))
   }
+  /* behavior: show IIIF viewer popup on keyword hover */
   function handleKeywordHover(isHovered, keywordIndex, event) {
     setIIIFViewers(prevIIIFViewers => prevIIIFViewers.map((elem, index) => {
       if (index === keywordIndex) {
@@ -46,7 +55,14 @@ export default function Row(props) {
       }
     }))
   }
+  
+
+     /*****************************/
+    /*** DESCRIPTIONS KEYWORDS ***/
+   /*****************************/
+  /* element mapping: create array of each word in a neighborhood's description string. */
   let linkfulDesc = props.description.split(' ').map(word => word + ' ')
+  /* element mapping: find and return starting index of each keyword */
   function searchForKeywords(keywordStr) {
     if (!props.description.includes(keywordStr)) return -1
     
@@ -67,6 +83,10 @@ export default function Row(props) {
     }
     return -1
   }
+  /* element mapping: in the array of words of a neighborhood's description string,
+     replace each keyword with span (allows responsivity to clicks, hovers, etc.). */
+  /* element mapping: below the span, 
+     conditionally render the IIIF viewer if keyword is clicked or hovered.*/
   for (const keywordRow of props.additionalDocumentsLinks) {
     const keywordStr = keywordRow[0]
     const index = searchForKeywords(keywordStr)
@@ -83,10 +103,10 @@ export default function Row(props) {
                 onMouseEnter={() => handleKeywordHover(true, indexOfKeyword, event)}
                 onMouseLeave={() => handleKeywordHover(false, indexOfKeyword, event)}>
             {keywordStr} </span>
+          
             {(IIIFViewers[indexOfKeyword].hovered 
                 || IIIFViewers[indexOfKeyword].clicked
               ) 
-              && props.dbFocused
               && <iframe className='Row--IIIFViewer' 
                          style={{
                           width:348,
@@ -103,6 +123,13 @@ export default function Row(props) {
     }
   }
 
+
+     /*********************/
+    /*** RESPONSIVITY ****/
+   /*********************/
+  /* responsivity (small viewports): handle whether additional info (neighborhood, date, description, and address) 
+     is shown or not for each row, on click. 
+     default: only name is shown for each row */
   const [additionalInfoVisible, setAdditionalInfoVisible] = React.useState(false)
   function handleClick() {
     if (window.innerWidth <= 1120) {
@@ -116,6 +143,9 @@ export default function Row(props) {
   }
 
   
+     /*********************/
+    /*** JSX RENDERING ***/
+   /*********************/
   return (
     <div className='Row'
          onClick={handleClick}
