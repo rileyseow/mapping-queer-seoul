@@ -37,8 +37,10 @@ export default function Database() {
       scroll: event.target.scrollTop
     }))
   }
+  /* state: track whether db is hovered (used in Row component to render IIIF viewer only within table, not when user scrolls outside of table) */
+  const [dbFocused, setDbFocused] = React.useState(false)
   /* element mapping: render Row component for each row of data */
-  const rowElems = data.map(row => <Row key={row.id} offsets={offsets} {...row} />)
+  const rowElems = data.map(row => <Row key={row.id} offsets={offsets} dbFocused={dbFocused} {...row} />)
 
 
      /*********************/
@@ -50,7 +52,9 @@ export default function Database() {
 
       <div className='Database--tableContainer'>
         <div className='Database--table' ref={ref} 
-                                         onScroll={handleScroll}>
+                                         onScroll={handleScroll}
+                                         onMouseEnter={() => setDbFocused(true)}
+                                         onMouseLeave={() => setDbFocused(false)}>
           <div className='Database--headerRow'>
             <p className='Row--name'>Name</p>
             <p className='Row--neighborhood'>Neighborhood</p>

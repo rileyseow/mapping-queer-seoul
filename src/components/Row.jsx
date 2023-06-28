@@ -4,22 +4,12 @@ import '../App.css'
 
 export default function Row(props) {
 
-  /* state: track which row is being hovered (change color of hovered row to aqua green) */
-  const [selectedText, setSelectedText] = React.useState('black')
-  function select() {
-    setSelectedText('#699f9f')
-  }
-  function deselect() {
-    setSelectedText('black')
-  }
-
-
      /*********************/
     /**** IIIF VIEWER ****/
    /*********************/
   /* state: track hover state, click state, and x-y location of each row's description keyword(s) 
      (stored in props.additionalDocumentsLinks) */
-  let stateArr = new Array(props.additionalDocumentsLinks.length).fill({
+  const stateArr = new Array(props.additionalDocumentsLinks.length).fill({
     hovered:false,
     clicked: false,
     x: 0,
@@ -47,14 +37,29 @@ export default function Row(props) {
         return({
           hovered: isHovered,
           clicked: elem.clicked,
-          x: elem.x === 0 ? event.clientX - props.offsets.left + 55 : elem.x,
-          y: elem.y === 0 ? event.clientY - props.offsets.top + props.offsets.scroll - 30 : elem.y
+          x: window.innerWidth > 1120 
+                ? (elem.x === 0 ? event.clientX - props.offsets.left + 55 : elem.x)
+                : (elem.x === 0 ? event.clientX - props.offsets.left - 150 : elem.x),
+          y: window.innerWidth > 1120 
+                ? (elem.y === 0 ? event.clientY - props.offsets.top + props.offsets.scroll - 30 : elem.y)
+                : (elem.y === 0 ? event.clientY - props.offsets.top + props.offsets.scroll + 40 : elem.y)
         })
       } else {
         return elem
       }
     }))
   }
+  /* behavior: on viewport resize, reset keyword / IIIF viewer state to not clicked and default */
+  React.useEffect(() => {
+    function watchWidth() {
+      setIIIFViewers(stateArr)
+    }
+    window.addEventListener('resize', watchWidth)
+    return () => {
+      window.removeEventListener('resize', watchWidth)
+    }
+  }, [])
+
   
 
      /*****************************/
@@ -86,7 +91,7 @@ export default function Row(props) {
   /* element mapping: in the array of words of a neighborhood's description string,
      replace each keyword with span (allows responsivity to clicks, hovers, etc.). */
   /* element mapping: below the span, 
-     conditionally render the IIIF viewer if keyword is clicked or hovered.*/
+     conditionally render the IIIF viewer if keyword is clicked or hovered and table is in focus.*/
   for (const keywordRow of props.additionalDocumentsLinks) {
     const keywordStr = keywordRow[0]
     const index = searchForKeywords(keywordStr)
@@ -107,6 +112,7 @@ export default function Row(props) {
             {(IIIFViewers[indexOfKeyword].hovered 
                 || IIIFViewers[indexOfKeyword].clicked
               ) 
+              && props.dbFocused
               && <iframe className='Row--IIIFViewer' 
                          style={{
                           width:348,
@@ -147,13 +153,8 @@ export default function Row(props) {
     /*** JSX RENDERING ***/
    /*********************/
   return (
-    <div className='Row'
-         onClick={handleClick}
-         onMouseEnter={select}
-         onMouseLeave={deselect}
-         style={{color: selectedText}}
-    >
-      <div className='Row--nameContainer'>
+    <div className='Row'>
+      <div className='Row--nameContainer' onClick={handleClick}>
         <p className='Row--name'>{props.name}</p>
         <p className='Row--plusSign' rotate={additionalInfoVisible.toString()}>+</p>
       </div>

@@ -455,6 +455,10 @@ button:disabled {
   font-size:1.2vw;
 }
 
+.Row:hover {
+  color: #699f9f;
+}
+
 .Row > * {
   margin:0;
 }
@@ -532,11 +536,11 @@ button:disabled {
     flex-direction:column;  
   }
   .Row:hover {
-    cursor:pointer;
     background-color: #f5f3f0;
   }
   .Row:hover .Row--nameContainer {
     font-weight: 700;
+    cursor:pointer;
   }
   .Row > * {
     padding-left:0;
