@@ -123,8 +123,6 @@ export default function About() {
         {sectionDisplays.todo.shown &&   
           <div className='panel'>
             <ul>
-              <li>GENERAL: make database section responsive</li>
-              <li>GENERAL: make header interactivity (map + title) smartphone-friendly (simulate hover movements??)</li>
               <li>GENERAL: make site accessible</li>
               <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
               <li>GENERAL: comment code</li>
@@ -133,9 +131,10 @@ export default function About() {
               <li>NEIGHBORHOODS: have markers remember z-indices based on click/selected history</li>
               <li>NEIGHBORHOODS: description UI updates? animate page transitions?</li>
               <br/>
+              <li>DATABASE: tweak image popup locations -- when to set new location or not</li>
               <li>DATABASE: improve search and replace functionality (correctly strip nonalphanumerics)</li>
-              <li>DATABASE: replace default iiif src links with relevant ones (doesn't seem to work on universalviewer? may have to switch systems)</li>
               <li>DATABASE: searchbar</li>
+              <li>DATABASE: replace default iiif src links with relevant ones (doesn't seem to work on universalviewer? may have to switch systems)</li>
               <li>DATABASE: if a lot more data, replace local data file with cloud rdbms</li>
             </ul>
           </div>

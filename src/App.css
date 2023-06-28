@@ -433,6 +433,17 @@ button:disabled {
   cursor:pointer;
 }
 
+@media (max-width:1000px) {
+  .Database--table {
+    height:600px;
+  }
+}
+@media (max-width:720px) {
+  .Database--table {
+    height:400px;
+  }
+}
+
 
   /***********************/
  /******** Row **********/
@@ -448,13 +459,20 @@ button:disabled {
   margin:0;
 }
 
+.Row--nameContainer {
+  flex:1 1 10%;
+}
+.Row--nameContainer > .Row--name {
+  margin:0;
+}
+
 .Row--name {
   flex:1 1 10%;
 }
 
 .Row--neighborhood {
   flex:1 1 10%;
-  margin-left:2%;
+  padding-left:2%;
 }
 
 .Row--date {
@@ -476,6 +494,71 @@ button:disabled {
 .Row--address {
   flex:1 1 14%;
   padding-left:3%;
+}
+
+.Row--plusSign {
+  display:none;
+}
+
+.Row--plusSign[rotate='true'] {
+  animation:forwardRotate 500ms;
+}
+.Row--plusSign[rotate='false'] {
+  animation:backRotate 500ms;
+}
+@keyframes forwardRotate {
+  0% {
+    transform:rotate(0)
+  }
+  100% {
+    transform:rotate(90deg)
+  }
+}
+@keyframes backRotate {
+  0% {
+    transform:rotate(0)
+  }
+  100% {
+    transform:rotate(-90deg)
+  }
+}
+
+
+@media (max-width:1120px) {
+  .Database--headerRow {
+    display:none;
+  }
+  .Row {
+    flex-direction:column;  
+  }
+  .Row:hover {
+    cursor:pointer;
+    background-color: #f5f3f0;
+  }
+  .Row:hover .Row--nameContainer {
+    filter:drop-shadow(0px 0px 8px #699f9f);
+  }
+  .Row > * {
+    padding-left:0;
+  }
+  .Row--nameContainer {
+    display:flex;
+    align-items:center;
+    padding-right:5%;
+    font-size:20px;
+  }
+  .Row--plusSign {
+    display:inline-block;
+  }
+  .Row :not(.Row--nameContainer, .Row--name, .Row--plusSign) {
+    font-size:16px;
+    margin-bottom:1.5vw;
+  }
+}
+@media (max-width:635px) {
+  .Row--nameContainer {
+    font-size:18px;
+  }
 }
 
 /* note to self for searchbar: highlight color #f6efdc */

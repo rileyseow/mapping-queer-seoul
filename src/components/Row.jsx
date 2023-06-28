@@ -103,18 +103,34 @@ export default function Row(props) {
     }
   }
 
+  const [additionalInfoVisible, setAdditionalInfoVisible] = React.useState(false)
+  function handleClick() {
+    if (window.innerWidth <= 1120) {
+      setAdditionalInfoVisible(!additionalInfoVisible)
+    }
+  }
+  const additionalInfoStyles = {
+    display: ((window.innerWidth <= 1120 && additionalInfoVisible)
+                  || window.innerWidth > 1120) 
+                  ? 'inline-block' : 'none'
+  }
 
+  
   return (
     <div className='Row'
+         onClick={handleClick}
          onMouseEnter={select}
          onMouseLeave={deselect}
          style={{color: selectedText}}
     >
-      <p className='Row--name'>{props.name}</p>
-      <p className='Row--neighborhood'>{props.neighborhood}</p>
-      <p className='Row--date'>{props.date}</p>
-      <p className='Row--description'>{linkfulDesc}</p>
-      <a className='Row--address' href={props.naverAddressLink} target='_blank'>{props.address}</a>
+      <div className='Row--nameContainer'>
+        <p className='Row--name'>{props.name}</p>
+        <p className='Row--plusSign' rotate={additionalInfoVisible.toString()}>+</p>
+      </div>
+      <p className='Row--neighborhood' style={additionalInfoStyles} >{props.neighborhood}</p>
+      <p className='Row--date' style={additionalInfoStyles} >{props.date}</p>
+      <p className='Row--description' style={additionalInfoStyles} >{linkfulDesc}</p>
+      <a className='Row--address'  style={additionalInfoStyles} href={props.naverAddressLink} target='_blank'>{props.address}</a>
     </div>
   )
 }
