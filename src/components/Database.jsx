@@ -39,7 +39,11 @@ export default function Database() {
   const [dbFocused, setDbFocused] = React.useState(false)
 
   /* element mapping: render Row component for each row of data */
-  let rowElems = data.filter(row => row.description.includes(searchInput))
+  let rowElems = data.filter(row => row.name.toLowerCase().includes(searchInput.toLowerCase())
+                                      || row.neighborhood.toLowerCase().includes(searchInput.toLowerCase()) 
+                                      || row.date.toLowerCase().includes(searchInput.toLowerCase())
+                                      || row.description.toLowerCase().includes(searchInput.toLowerCase())
+                                      || row.address.toLowerCase().includes(searchInput.toLowerCase()))
   const numSearchResults = rowElems.length
   rowElems = rowElems.map(row => <Row key={row.id} offsets={offsets} dbFocused={dbFocused} {...row} />)
 
