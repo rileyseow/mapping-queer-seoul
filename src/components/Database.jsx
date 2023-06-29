@@ -8,13 +8,6 @@ import data from '../assets/data.js'
 
 export default function Database() {
 
-  /* state: randomize glow for "more coming soon!" subtext on hover */
-  const [glow, setGlow] = React.useState(false)
-  const rainbow = ['#ED715A', '#EC963F', '#EFC344', '#8EC065', '#6996DB', '#B25FD4'];
-  function toggleGlow() {
-    setGlow(prevGlow => !prevGlow)
-  }
-
   /* ref / state: reference .Database--table to track its top, left, and scroll offsets */
   const ref = React.useRef(null)
   const [offsets, setOffsets] = React.useState({
@@ -37,10 +30,26 @@ export default function Database() {
       scroll: event.target.scrollTop
     }))
   }
+
+
+  /* state: keep track of searchbar input and only show relevant rows */
+  const [searchInput, setSearchInput] = React.useState("")
+
   /* state: track whether db is hovered (used in Row component to render IIIF viewer only within table, not when user scrolls outside of table) */
   const [dbFocused, setDbFocused] = React.useState(false)
+
   /* element mapping: render Row component for each row of data */
-  const rowElems = data.map(row => <Row key={row.id} offsets={offsets} dbFocused={dbFocused} {...row} />)
+  let rowElems = data.filter(row => row.description.includes(searchInput))
+  const numSearchResults = rowElems.length
+  rowElems = rowElems.map(row => <Row key={row.id} offsets={offsets} dbFocused={dbFocused} {...row} />)
+
+
+  /* state: randomize glow for "more coming soon!" subtext on hover */
+  const [glow, setGlow] = React.useState(false)
+  const rainbow = ['#ED715A', '#EC963F', '#EFC344', '#8EC065', '#6996DB', '#B25FD4'];
+  function toggleGlow() {
+    setGlow(prevGlow => !prevGlow)
+  }
 
 
      /*********************/
@@ -49,6 +58,18 @@ export default function Database() {
   return (
     <section>
       <h1 className='Database--title'>Search Database</h1>
+
+      <div className='Database--search'>
+        <input className='Database--searchbar' 
+               type='text' 
+               placeholder='Search here...'
+               value={searchInput}
+               onChange={event => setSearchInput(event.target.value)}>
+        </input>
+        <p className='Database--searchbarIcon'>🔍</p>
+      </div>
+
+      <p className='Database--resultCount'>{`${numSearchResults} result${numSearchResults != 1 ? 's' : ''} for '${searchInput}'`}</p>
 
       <div className='Database--tableContainer'>
         <div className='Database--table' ref={ref} 

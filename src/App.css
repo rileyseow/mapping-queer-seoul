@@ -389,6 +389,70 @@ button:disabled {
   margin-bottom:4.5%;
 }
 
+.Database--search {
+  display:flex;
+  align-items:center;
+  font-size:25px;
+  margin-bottom:1.5vw;
+}
+
+.Database--search:hover .Database--searchbar {
+  animation:smallGrow 200ms;
+  animation-fill-mode:forwards;
+  filter:drop-shadow(0px 0px 10px #699f9f);
+}
+.Database--search:hover .Database--searchbarIcon {
+  cursor:pointer;
+  filter:drop-shadow(5px 5px 7px #699f9f);
+  animation:grow 200ms;
+  animation-fill-mode:forwards;
+}
+
+.Database--searchbar {
+  font-family: 'Edition-International', Sans-Serif;
+  font-weight:normal;
+  font-size:25px;
+  color: #699f9f;
+  background-color:#FAF9F5;
+  border:none;
+  border-radius:10px;
+  width:88%;
+  margin-right:auto;
+  padding:1%;
+  padding-left:1.5vw;
+}
+.Database--searchbar:focus {
+  outline-width:0;
+}
+
+.Database--searchbarIcon {
+  margin:0 2.5% 0 0;
+}
+
+@media (max-width:1120px) {
+  .Database--search {
+    margin-top:5vw;
+    margin-bottom:2vw;
+  }
+}
+
+@media (max-width:635px) {
+  .Database--search {
+    font-size:20px;
+    margin-top:10vw;
+    margin-bottom:5vw;
+  }
+  .Database--searchbar {
+    font-size:20px;
+  }
+}
+
+.Database--resultCount {
+  padding-left:2%;
+}
+
+/* note to self for searchbar: highlight color #f6efdc */
+ 
 .Database--tableContainer {
   overscroll-behavior: auto;
 }
@@ -565,8 +629,6 @@ button:disabled {
   }
 }
 
-/* note to self for searchbar: highlight color #f6efdc */
-
 
   /***********************/
  /******* About *********/
@@ -626,10 +688,13 @@ footer {
   legend {
     font-size:2vw;
   }
+  .Database--search, .Database--searchbar {
+    font-size:1.9vw;
+  }
   .Database--headerRow {
     font-size:1.7vw;
   }
-  fieldset, .Database--subtext, footer {
+  fieldset, footer, .Database--subtext, .Database--resultCount {
     font-size:1.2vw;
   }
 
