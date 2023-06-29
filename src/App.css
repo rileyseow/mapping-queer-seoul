@@ -450,8 +450,6 @@ button:disabled {
 .Database--resultCount {
   padding-left:2%;
 }
-
-/* note to self for searchbar: highlight color #f6efdc */
  
 .Database--tableContainer {
   overscroll-behavior: auto;

@@ -111,6 +111,31 @@ export default function Row(props) {
   }
 
 
+     /**************************/
+    /** SEARCHBAR HIGHLIGHTS **/
+   /**************************/
+  /* behavior: highlight searched-for phrase in relevant rows as it is typed in the search bar */ 
+  function highlightIfSearchTerm(body) {
+    if (typeof body === 'string') {
+      const index = body.toLowerCase().indexOf(props.searchInput.toLowerCase())
+      if (index === -1) return body
+      return [body.substring(0, index), 
+                <span style={{backgroundColor:'#eee591'}}>
+                  {body.substring(index, index + props.searchInput.length)}
+                </span>,
+                body.substring(index + props.searchInput.length)
+              ]
+    } else if (Array.isArray(body)) {
+      let highlightedDesc = []
+      for (const part of body) {
+        if (typeof part === 'string') highlightedDesc.push(...highlightIfSearchTerm(part))
+        else highlightedDesc.push(part) // you've hit the linked span jsx element with its iiif viewer
+      }
+      return highlightedDesc
+    } else return body
+  }
+
+
      /*********************/
     /*** RESPONSIVITY ****/
    /*********************/
@@ -136,13 +161,13 @@ export default function Row(props) {
   return (
     <div className='Row'>
       <div className='Row--nameContainer' onClick={handleClick}>
-        <p className='Row--name'>{props.name}</p>
+        <p className='Row--name'>{highlightIfSearchTerm(props.name)}</p>
         <p className='Row--plusSign' rotate={additionalInfoVisible.toString()}>+</p>
       </div>
-      <p className='Row--neighborhood' style={additionalInfoStyles} >{props.neighborhood}</p>
-      <p className='Row--date' style={additionalInfoStyles} >{props.date}</p>
-      <p className='Row--description' style={additionalInfoStyles} >{linkfulDesc}</p>
-      <a className='Row--address'  style={additionalInfoStyles} href={props.naverAddressLink} target='_blank'>{props.address}</a>
+      <p className='Row--neighborhood' style={additionalInfoStyles} >{highlightIfSearchTerm(props.neighborhood)}</p>
+      <p className='Row--date' style={additionalInfoStyles} >{highlightIfSearchTerm(props.date)}</p>
+      <p className='Row--description' style={additionalInfoStyles} >{highlightIfSearchTerm(linkfulDesc)}</p>
+      <a className='Row--address'  style={additionalInfoStyles} href={props.naverAddressLink} target='_blank'>{highlightIfSearchTerm(props.address)}</a>
     </div>
   )
 }

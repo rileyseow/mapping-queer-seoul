@@ -45,7 +45,7 @@ export default function Database() {
                                       || row.description.toLowerCase().includes(searchInput.toLowerCase())
                                       || row.address.toLowerCase().includes(searchInput.toLowerCase()))
   const numSearchResults = rowElems.length
-  rowElems = rowElems.map(row => <Row key={row.id} offsets={offsets} dbFocused={dbFocused} {...row} />)
+  rowElems = rowElems.map(row => <Row key={row.id} {...row} offsets={offsets} dbFocused={dbFocused} searchInput={searchInput} />)
 
 
   /* state: randomize glow for "more coming soon!" subtext on hover */
