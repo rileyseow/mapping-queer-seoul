@@ -9,6 +9,7 @@ export default
     address: "40 Usadan-ro, Yongsan-gu, Seoul",
     naverAddressLink:"https://naver.me/GsOrFFww",
     additionalDocumentsLinks:[["360-foot alleyway", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"],
+                              ["U.S. military base", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"],
                               ["'Hooker Hill'", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"]]
   },
   {
@@ -31,7 +32,7 @@ export default
     address: "19 Eulji-ro 18-gil, Jung-ju, Seoul",
     naverAddressLink:"https://naver.me/GJFD80br",
     additionalDocumentsLinks:[["'potato queens.'", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"],
-                              ["similar bar called 'B'", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"]
+                              ["80s", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"]
                               ]
   },
   {
@@ -42,7 +43,7 @@ export default
     description: "Formerly called Pagoda Park after the 10-storied Wongaksa Pagoda located in its center, Tapgol Park is best known as the origin of Korea's March 1st Independence Movement in 1919 (opposing Japanese colonial occupation). Perhaps a slightly lesser-known fact is that the park was a popular gay cruising ground in the 1970s, located right across the street from the city's most popular second-run theater (Pagoda Theater, widely-known as a place where gay sex was solicited and offered). Tapgol Park today is still frequented by older South Korean gay men and by older women sex workers, and remains a bustling and historical part of downtown Seoul.",
     address: "99 Jong-ro, Jongno-gu, Seoul",
     naverAddressLink:"https://naver.me/GqBQ50X9",
-    additionalDocumentsLinks:[["Pagoda Park", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"]
+    additionalDocumentsLinks:[["Wongaksa Pagoda", "https://uv-v4.netlify.app/uv.html#?manifest=https://wellcomelibrary.org/iiif/b18035723/manifest&c=0&m=0&cv=0&config=&locales=en-GB:English (GB),cy-GB:Cymraeg,fr-FR:Français (FR),pl-PL:Polski,sv-SE:Svenska&xywh=-2791,-197,8149,3936&r=0"]
                               ]
   },
   {

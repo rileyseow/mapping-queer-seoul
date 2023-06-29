@@ -137,7 +137,6 @@ export default function About() {
               <li>NEIGHBORHOODS: have markers remember z-indices based on click history</li>
               <li>NEIGHBORHOODS: description UI updates? animate page transitions?</li>
               <br/>
-              <li>DATABASE: improve search and replace functionality (correctly strip nonalphanumerics)</li>
               <li>DATABASE: searchbar</li>
               <li>DATABASE: replace default iiif src links with relevant ones (doesn't seem to work on universalviewer? may have to switch systems)</li>
               <li>DATABASE: if a lot more data, replace local data file with cloud rdbms</li>

@@ -49,7 +49,7 @@ export default function Row(props) {
       }
     }))
   }
-  /* behavior: on viewport resize, reset keyword / IIIF viewer state to not clicked and default */
+  /* responsivity: on viewport resize, reset keyword / IIIF viewer state to not clicked and default */
   React.useEffect(() => {
     function watchWidth() {
       setIIIFViewers(stateArr)
@@ -65,68 +65,49 @@ export default function Row(props) {
      /*****************************/
     /*** DESCRIPTIONS KEYWORDS ***/
    /*****************************/
-  /* element mapping: create array of each word in a neighborhood's description string. */
-  let linkfulDesc = props.description.split(' ').map(word => word + ' ')
-  /* element mapping: find and return starting index of each keyword */
-  function searchForKeywords(keywordStr) {
-    if (!props.description.includes(keywordStr)) return -1
-    
-    const keywordArr = keywordStr.split(' ')
-    const allStartIndexMatches = []
-    linkfulDesc.forEach((word, index) => {
-      if (word === keywordArr[0] + ' ') allStartIndexMatches.push(index)
-    })
+  /* element mapping: from a neighborhood description paragraph (props.description), find each keyword listed in props.additionalDocumentsLinks. 
+     replace each keyword with a span that allows responsivity to clicks, hovers, etc. 
+     below the span, conditionally render the IIIF viewer if keyword is clicked or hovered and table is in focus. */
+  let linkfulDesc = []
+  let descIndexPointer = 0
+  for (let i = 0; i < props.additionalDocumentsLinks.length; i++) {
+    const keyword = props.additionalDocumentsLinks[i][0]
+    const index = props.description.indexOf(keyword)
 
-    for (const startIndex of allStartIndexMatches) {
-      // slice(0, -1) gets rid of the last trailing space
-      let subArrKeywordSlice = linkfulDesc.slice(startIndex, startIndex + keywordArr.length).join('').slice(0,-1)
-      // gets rid of end commas (improve later)
-      if (subArrKeywordSlice.slice(-1) === ',') subArrKeywordSlice = subArrKeywordSlice.slice(0, -1)      
-      if (subArrKeywordSlice === keywordStr) {
-        return startIndex
-      }
-    }
-    return -1
+    if (index === -1) continue;
+
+    linkfulDesc.push(props.description.slice(descIndexPointer, index))
+    linkfulDesc.push(
+      <>
+        <span key={index}
+            className='IIIFKeyword' 
+            style={{fontWeight: IIIFViewers[i].clicked ? '700' : '400'}}
+            onClick={() => handleKeywordClick(i)}
+            onMouseEnter={() => handleKeywordHover(true, i, event)}
+            onMouseLeave={() => handleKeywordHover(false, i, event)}>
+        {keyword} </span>
+      
+        {(IIIFViewers[i].hovered 
+            || IIIFViewers[i].clicked
+          ) 
+          && props.dbFocused
+          && <iframe className='Row--IIIFViewer' 
+                      style={{
+                      width:348,
+                      height:261,
+                      left:IIIFViewers[i].x,
+                      top:IIIFViewers[i].y
+                    }} 
+                      src={props.additionalDocumentsLinks[i][1]} 
+                      allowFullScreen>
+            </iframe>
+        }
+      </>
+    )
+    descIndexPointer = index + keyword.length
   }
-  /* element mapping: in the array of words of a neighborhood's description string,
-     replace each keyword with span (allows responsivity to clicks, hovers, etc.). */
-  /* element mapping: below the span, 
-     conditionally render the IIIF viewer if keyword is clicked or hovered and table is in focus.*/
-  for (const keywordRow of props.additionalDocumentsLinks) {
-    const keywordStr = keywordRow[0]
-    const index = searchForKeywords(keywordStr)
-    if (index === -1) {
-      continue;
-    } else {
-      const indexOfKeyword = props.additionalDocumentsLinks.indexOf(keywordRow)
-      linkfulDesc.splice(index, keywordStr.split(' ').length, 
-          <>
-            <span key={index}
-                className='IIIFKeyword' 
-                style={{fontWeight: IIIFViewers[indexOfKeyword].clicked ? '700' : '400'}}
-                onClick={() => handleKeywordClick(indexOfKeyword)}
-                onMouseEnter={() => handleKeywordHover(true, indexOfKeyword, event)}
-                onMouseLeave={() => handleKeywordHover(false, indexOfKeyword, event)}>
-            {keywordStr} </span>
-          
-            {(IIIFViewers[indexOfKeyword].hovered 
-                || IIIFViewers[indexOfKeyword].clicked
-              ) 
-              && props.dbFocused
-              && <iframe className='Row--IIIFViewer' 
-                         style={{
-                          width:348,
-                          height:261,
-                          left:IIIFViewers[indexOfKeyword].x,
-                          top:IIIFViewers[indexOfKeyword].y
-                        }} 
-                         src={props.additionalDocumentsLinks[indexOfKeyword][1]} 
-                         allowFullScreen>
-                </iframe>
-            }
-          </>
-       )
-    }
+  if (descIndexPointer < props.description.length) {
+    linkfulDesc.push(props.description.slice(descIndexPointer))
   }
 
 
