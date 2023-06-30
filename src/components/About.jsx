@@ -60,7 +60,7 @@ export default function About() {
     /*** JSX RENDERING ***/
    /*********************/
   return (
-    <section>
+    <section className='About'>
 
       <h1>About</h1>
 
@@ -92,24 +92,25 @@ export default function About() {
         <legend className='accordion'>Sources +</legend>
         {sectionDisplays.sources.shown && 
           <div className='panel'>
-            <p>This project is based on the work of Professor Todd Henry, UCSD. Neighborhood descriptions are copied directly from his lecture pamphlet on gay spatiality in authoritarian-era Seoul (see below). Everything else is written in my own words — but the inspiration for this project and, widely, its informational credit, go to Professor Henry and should be cited accordingly.</p>
-            <br/>
-            <p>For further reference, see:</p>
+            <p>This project is based on the work of Professor Todd Henry, UCSD. Neighborhood descriptions are copied directly from his lecture pamphlet on gay spatiality in authoritarian-era Seoul (see below). The inspiration for this project and, widely, its informational credit, go to Professor Henry and should be cited accordingly.</p>
               <ul>
                 <li>Todd A. Henry, "Gay and Queer Map of Authoritarian-Era Seoul (1950-1990)" [prepared for film premiere of 'Paradise' (Minki Hong, Director, and Todd A. Henry, Producer), December 2022].</li>  
               </ul>
             
-            <p>Images from:</p>
+            <br />
+            <p>Images and image descriptions are taken with only minimal edits from the Korea Queer Archive, also known as QueerArch. As the largest (and maybe only?) digital collection project cataloging queer experience in Korea, the influence of this resource must not be understated. Informational credit for any images and descriptions on this site go to QueerArch and should be cited accordingly.</p>
             <ul>
               <li>Korea Queer Archive (<a target='_blank' href='https://queerarchive.org/'>https://queerarchive.org/</a>)</li>
             </ul>
 
-            <p>Embedded using:</p>
+            <br />
+            <p>As a test, IIIF viewers are currently embedded in the site's database using Universal Viewer.</p>
             <ul>
               <li>Universal Viewer (<a target='_blank' href='https://universalviewer.io'>https://universalviewer.io</a>)</li>
             </ul>
 
-            <p>Design / methodology inspiration from:</p>
+            <br />
+            <p>Broadly, my design and/or methodology inspiration for this project come from the following sites:</p>
             <ul>
               <li>The U.S. Press Freedom Tracker (<a target='_blank' href='https://pressfreedomtracker.us/'>https://pressfreedomtracker.us/</a>)</li>
               <li>Liberated Africans (<a target='_blank' href='https://www.liberatedafricans.org/public/index.php'>https://www.liberatedafricans.org</a>)</li>
@@ -133,7 +134,7 @@ export default function About() {
               <li>GENERAL: make site accessible</li>
               <li>GENERAL: eng / kor versions (try https://googlefonts.github.io/korean/, 2nd font (도틱A1))</li>
               <br/>
-              <li>NEIGHBORHOODS: add images? (slam animation? scan prof henry's neighborhood maps?)</li>
+              <li>NEIGHBORHOODS: add images? (prof henry's neighborhood maps?)</li>
               <li>NEIGHBORHOODS: have markers remember z-indices based on click history</li>
               <br/>
               <li>DATABASE: replace default iiif src links with relevant ones (doesn't seem to work on universalviewer? may have to switch systems)</li>
