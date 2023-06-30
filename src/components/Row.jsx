@@ -135,43 +135,24 @@ export default function Row(props) {
     /** SEARCHBAR HIGHLIGHTS **/
    /**************************/
   /* behavior: highlight searched-for phrase in relevant rows as it is typed in the search bar */ 
-  function highlightIfSearchTerm(searchArr) {
-    let highlightedSearchArr = []
-    for (const part of searchArr) {
-      if (typeof part === 'string') {
-        const index = part.toLowerCase().indexOf(props.searchInput.toLowerCase())
-        if (index === -1) {
-          highlightedSearchArr.push(part)
-        } else {
-          highlightedSearchArr.push(part.substring(0, index))
-          highlightedSearchArr.push(<span style={{backgroundColor:'#eee591'}}>
-                                        {part.substring(index, index + props.searchInput.length)}
-                                    </span>)
-          highlightedSearchArr.push(part.substring(index + props.searchInput.length))
-        }
-      } else { // you've hit the linked span jsx element with its iiif viewer; can't edit after render
-        highlightedSearchArr.push(part) 
+  function highlightIfSearchTerm(body) {
+    if (typeof body === 'string') {
+      const index = body.toLowerCase().indexOf(props.searchInput.toLowerCase())
+      if (index === -1) return body
+      return [body.substring(0, index), 
+                <span style={{backgroundColor:'#eee591'}}>
+                  {body.substring(index, index + props.searchInput.length)}
+                </span>,
+                body.substring(index + props.searchInput.length)
+              ]
+    } else if (Array.isArray(body)) {
+      let highlightedDesc = []
+      for (const part of body) {
+        if (typeof part === 'string') highlightedDesc.push(...highlightIfSearchTerm(part))
+        else highlightedDesc.push(part) // you've hit the linked span jsx element with its iiif viewer; can't edit after render
       }
-    }
-    return highlightedSearchArr
-
-    // if (typeof body === 'string') {
-    //   const index = body.toLowerCase().indexOf(props.searchInput.toLowerCase())
-    //   if (index === -1) return body
-    //   return [body.substring(0, index), 
-    //             <span style={{backgroundColor:'#eee591'}}>
-    //               {body.substring(index, index + props.searchInput.length)}
-    //             </span>,
-    //             body.substring(index + props.searchInput.length)
-    //           ]
-    // } else if (Array.isArray(body)) {
-    //   let highlightedDesc = []
-    //   for (const part of body) {
-    //     if (typeof part === 'string') highlightedDesc.push(...highlightIfSearchTerm(part))
-    //     else highlightedDesc.push(part) // you've hit the linked span jsx element with its iiif viewer; can't edit after render
-    //   }
-    //   return highlightedDesc
-    // } else return body
+      return highlightedDesc
+    } else return body
   }
 
 
@@ -200,13 +181,13 @@ export default function Row(props) {
   return (
     <div className='Row'>
       <div className='Row--nameContainer' onClick={handleClick}>
-        <p className='Row--name'>{highlightIfSearchTerm([props.name])}</p>
+        <p className='Row--name'>{highlightIfSearchTerm(props.name)}</p>
         <p className='Row--plusSign' rotate={additionalInfoVisible.toString()}>+</p>
       </div>
-      <p className='Row--neighborhood' style={additionalInfoStyles} >{highlightIfSearchTerm([props.neighborhood])}</p>
-      <p className='Row--date' style={additionalInfoStyles} >{highlightIfSearchTerm([props.date])}</p>
+      <p className='Row--neighborhood' style={additionalInfoStyles} >{highlightIfSearchTerm(props.neighborhood)}</p>
+      <p className='Row--date' style={additionalInfoStyles} >{highlightIfSearchTerm(props.date)}</p>
       <p className='Row--description' style={additionalInfoStyles} >{highlightIfSearchTerm(linkfulDesc)}</p>
-      <a className='Row--address'  style={additionalInfoStyles} href={props.naverAddressLink} target='_blank'>{highlightIfSearchTerm([props.address])}</a>
+      <a className='Row--address'  style={additionalInfoStyles} href={props.naverAddressLink} target='_blank'>{highlightIfSearchTerm(props.address)}</a>
     </div>
   )
 }
