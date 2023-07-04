@@ -831,9 +831,6 @@ footer {
   .Database--search, .Database--searchbar {
     font-size:1.9vw;
   }
-  .Database--headerRow {
-    font-size:1.7vw;
-  }
   fieldset, footer, .Database--subtext, .Database--resultCount, .Gallery--container div {
     font-size:1.2vw;
   }
